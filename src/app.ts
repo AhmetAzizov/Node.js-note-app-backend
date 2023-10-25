@@ -7,7 +7,7 @@ const app = express();
 // This allows to send JSON to the server
 app.use(express.json());
 
-app.use("/something", notesRouter)
+app.use("/something", notesRouter);
 
 app.use((req, res, next) => {
     next(Error("Endpoint not found!"));
