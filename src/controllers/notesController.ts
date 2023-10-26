@@ -25,3 +25,14 @@ export const createNote: RequestHandler = async (req, res, next) => {
         next(error);
     }
 };
+
+export const getNote: RequestHandler = async (req, res, next) => {
+    const id = req.params.id;
+
+    try {
+        const note = await NoteModel.findById(id).exec();
+        res.status(200).json(note);
+    } catch (error) {
+        next(error);
+    }
+}
