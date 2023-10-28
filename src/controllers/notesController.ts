@@ -95,3 +95,23 @@ export const updateNote: RequestHandler<UpdateNoteParams, unknown, noteBody, unk
         next(error);
     }
 };
+
+export const deleteNote: RequestHandler = async (req, res, next) => {
+    const id = req.params.id;
+
+    try {
+        if (!isValidObjectId(id)) {
+            throw createHttpError(400, "Note ID is not valid");
+        }
+
+        const note = await NoteModel.findByIdAndDelete(id).exec();
+
+        if (!note) {
+            throw createHttpError(404, "Note with specified ID not found");
+        }
+
+        res.sendStatus(204);
+    } catch (error) {
+        next(error);
+    }
+};

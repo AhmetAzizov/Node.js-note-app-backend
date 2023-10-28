@@ -1,5 +1,5 @@
 import express from 'express';
-import { getNotes, createNote, getNote, updateNote } from "../controllers/notesController"
+import { getNotes, createNote, getNote, updateNote, deleteNote } from "../controllers/notesController"
 
 const router = express.Router();
 
@@ -10,5 +10,7 @@ router.get('/:id', getNote)
 router.post('/', createNote);
 
 router.patch('/:id', updateNote);
+
+router.delete('/:id', deleteNote);
 
 export default router;
